@@ -33,9 +33,17 @@ The THAPSAT project follows these steps:
 1. **Data Acquisition**: SST data is collected using satellite sources and SDR tools.
 2. **Preprocessing**: The images are converted to grayscale and enhanced using Gaussian blurring.
 3. **Cloud Detection**: Adaptive thresholding and morphological operations are applied to segment cloud regions.
-4. **Gradient Computation**: Sobel filters are used to compute temperature gradients.
-5. **Wind Direction Estimation**: The gradient angles are analyzed to approximate wind directions.
-6. **Visualization**: Arrows indicating wind directions are overlayed on SST images for better interpretation.
+4. **Gradient Computation (Sobel Filter)**:
+   - The Sobel filter is used to calculate the temperature gradient in the SST image.
+   - It helps to find the edges and contours in the image.
+5. **Wind Direction Estimation (Direction Approximation)**:
+   - The code calculates the magnitude and angle of the gradient vectors.
+   - The angle in radians is converted to degrees and shifted to the range of [0, 360].
+   - The adjusted wind direction thresholds are used to approximate the wind directions based on the gradient angles.
+6. **Visualization**:
+   - **Thresholding**: After calculating the gradient, a threshold is applied to segment the cloud region from the SST image.
+   - Thresholding separates image pixels into two classes based on intensity values, helping to identify cloud regions.
+   - Finally, the wind directions are visualized on the SST image using arrowed lines, highlighting the wind direction for each pixel in the cloud region.
 
 ## Results<a name="results"></a>
 The analysis produces SST images with cloud-detected regions and directional arrows indicating wind movement. These results aid in better understanding atmospheric dynamics and weather forecasting.
